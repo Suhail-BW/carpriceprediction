@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Prediction </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100%
+        }
+
+        body {
+            background-image: url("https://d3ftmvynp162pm.cloudfront.net/public/album_photo/a2/79/05/49ee6e1194e6eae3afdc10127bf06178.jpg");
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: sans-serif;
+            margin: 40px;
+        }
+
+        .regform {
+            width: 800px;
+            background-color: rgba(12, 31, 20, 0.8);
+            margin: auto;
+            color: #FFFFFF;
+            padding: 10px 0px 10px 0px;
+            text-align: center;
+            border-radius: 15px 15px 0px 0px;
+        }
+
+        .main {
+            background-color: rgba(90, 94, 92, 0.7);
+            width: 800px;
+            margin: auto;
+        }
+
+        form {
+            padding: 40px;
+        }
+
+        #name {
+            width: 100%;
+            height: 650px;
+        }
+
+        .yearlabel,
+        .pricelabel,
+        .distancelabel,
+        .ownerlabel,
+        .fuellabel,
+        .sellerlabel,
+        .translabel {
+            margin-left: 15px;
+            margin-top: 20px;
+            width: 125px;
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .yearname,
+        .pricename,
+        .kmsname,
+        .ownername {
+            position: relative;
+            left: 10px;
+            line-height: 40px;
+            margin-bottom: 35px;
+            border-radius: 6px;
+            padding: 0 22px;
+            font-size: 14px;
+        }
+
+        .yearname {
+            margin-left: 250px;
+        }
+
+        .pricename {
+            margin-left: 40px;
+        }
+
+        .kmsname {
+            margin-left: 120px;
+        }
+
+        .ownername {
+            margin-left: 2px;
+            margin-bottom: 35px;
+        }
+
+        .option,
+        .option1,
+        .option2 {
+            position: relative;
+            left: 200px;
+            margin-bottom: 35px;
+            margin-left: 8px;
+            line-height: 40px;
+            width: 220px;
+            border-radius: 6px;
+            padding: 0 22px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .option1 {
+            margin-left: -5px;
+        }
+
+        .option2 {
+            margin-left: -80px;
+        }
+
+        button {
+            background-color: #3BAF9F;
+            display: block;
+            margin: 20px 0px 0px 200px;
+            text-align: center;
+            border-radius: 12px;
+            border: 2px solid #366473;
+            padding: 14px 110px;
+            outline: none;
+            color: white;
+            cursor: pointer;
+            transition: 0.25px;
+        }
+
+        button:hover {
+            background-color: #5390F5;
+        }
+
+        span {
+            color: #3182EB;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .text {
+            font-size: 30px;
+            color: rgb(255, 230, 2)
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- As a heading -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+
+                <a1 class="navbar-brand" href="/">
+                    <b>
+                        <FONT class="text">MINOR PROJECT <br> CAR PRICE PREDICTION</FONT>
+                    </b>
+                </a1>
+
+                <br>
+            </div>
+        </div>
+    </nav>
+
+    <br>
+    <a1><b>
+        </b></a1>
+
+    <div class="regform">
+        <h1>Car Price Prediction</h1>
+    </div>
+    <div class="main">
+        <form action="{{ url_for('predict')}}" method="post">
+            <font color=#FFFFFF>
+                <h2>Enter Details of the Car you want to Sell!.....</h2>
+                <h3>Year</h3>
+                <input id="first" name="Year" type="number ">
+                <h3>What is the Showroom Price?(In lakhs)</h3><input id="second" name="Present_Price"
+                    required="required"><br>
+                <h3>How Many Kilometers Drived?</h3><input id="third" name="Kms_Driven" required="required"><br>
+                <h3>How much owners previously had the car(0 or 1 or 3) ?</h3><input id="fourth" name="Owner"
+                    required="required"><br>
+                <h3>What Is the Fuel type?</h3><select name="Fuel_Type_Petrol" id="fuel" required="required"><br>
+                    <option value="Petrol">Petrol</option>
+                    <option value="Diesel">Diesel</option>
+                    <option value="Diesel">CNG</option>
+                </select>
+                <h3>Are you A Dealer or Individual</h3><select name="Seller_Type_Individual" id="resea"
+                    required="required">
+                    <option value="Dealer">Dealer</option>
+                    <option value="Individual">Individual</option>
+                </select><br>
+                <h3>Transmission type</h3><select name="Transmission_Mannual" id="research" required="required">
+                    <option value="Mannual">Manual Car</option>
+                    <option value="Automatic">Automatic Car</option>
+                </select>
+                <br><br><button id="sub" type="submit ">Calculate the Selling Price</button>
+                <br>
+            </font>
+
+        </form>
+    </div>
+    </form>
+    <br>
+    <span class="result"> <br><br>
+        <font color=#FFFFFF>
+            <h2>{{ prediction_text }}</h2>
+        </font>
+
+    </span>
+    </div>
+    <br>
+    <br>
+    <!-- Footer -->
+    <div class='footer'>
+        <p class='footer-description'>
+            <center> Developed by AMARSH GAUTAM & SUHAIL BASHIR</center>
+        </p>
+    </div>
+
+
+</body>
+
+</html>
